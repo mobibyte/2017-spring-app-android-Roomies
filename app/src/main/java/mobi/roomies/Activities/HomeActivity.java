@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import mobi.roomies.Adapters.FragmentAdapter;
 import mobi.roomies.R;
 
 public class HomeActivity extends AppCompatActivity {
@@ -31,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private FragmentAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -53,8 +54,8 @@ public class HomeActivity extends AppCompatActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
+        
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
