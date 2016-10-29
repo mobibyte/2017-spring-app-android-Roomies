@@ -9,9 +9,10 @@ import mobi.roomies.Fragments.TaskFragment;
 
 /**
  * Created by Kevin on 10/28/2016.
+ * hello
  */
 public class FragmentAdapter extends FragmentPagerAdapter {
-        private static int NUM_ITEMS = 3;
+        private static int NUM_ITEMS = 2;
 
         public FragmentAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
