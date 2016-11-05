@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:layout_margin="10px"
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_margin="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#cccccc"
+            android:id="@+id/linearLayoutCompat">
+
+            <!--TODO:: Make the little chat bubble thingy-->
+            <com.github.siyamed.shapeimageview.BubbleImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/better_gabe"
+                app:siArrowPosition="right"
+                app:siSquare="true"/>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+        <TextView
+            android:layout_marginTop="20px"
+            android:text="YOU OWE ME MONEY HOE WHERE IS THE MONEY AT. I NEED MY MONEYYYYYY. LOOK THIS TEXT WRAPS ALL THE WAY AROUND BECAUES I NEED IT FOR TESTING PURPOSES OMG LOOK. MORE TEXT. WOW THIS TEXT KEEPS GOING. I AM DOG WOOF WOOF WOOF WOOF WOOF WOOF WOOF WOOF WOOF."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:background="#dddddd"/>
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
