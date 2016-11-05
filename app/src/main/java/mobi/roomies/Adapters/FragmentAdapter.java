@@ -18,7 +18,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
             each tab should tie to a specific fragment
          */
         private static int NUM_ITEMS = 4;
-        private CharSequence[] titles = {"Chat","Calendar","Tasks","Expenses"};
+        private CharSequence[] titles = {"Chat","Tasks","Expenses","Calendar"};
 
         public FragmentAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
