@@ -1,12 +1,12 @@
 package mobi.roomies.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,29 +45,29 @@ public class ExpensesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-        mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-
         expensesAdapter = new ExpensesAdapter(new ArrayList<Expense>());
-
+        mLayoutManager = new LinearLayoutManager(getActivity());
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.d("asdf",mLayoutManager.toString());
+
         // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_expenses,container,false);
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setHasFixedSize(true);
+        Log.d("expense frag", expensesAdapter.getItemCount()+"");
+
         recyclerView.setAdapter(expensesAdapter);
 
-        return inflater.inflate(R.layout.fragment_expenses, container, false);
+        return view;
 
     }
 

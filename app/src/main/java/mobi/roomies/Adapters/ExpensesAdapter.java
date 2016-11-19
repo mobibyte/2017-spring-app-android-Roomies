@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,12 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
     private ArrayList<Expense> expenseList;
 
     public ExpensesAdapter(ArrayList<Expense> expenseList){
-        this.expenseList = expenseList;
+        Log.d("YO","YO");
+        this.expenseList = new ArrayList<>();
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
     }
 
     public class ExpenseViewHolder extends RecyclerView.ViewHolder {
@@ -31,9 +37,10 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
 
         public ExpenseViewHolder(View view) {
             super(view);
-            author = (TextView) view.findViewById(R.id.creator);
+            Log.d("yo2","yo2");
+            /*author = (TextView) view.findViewById(R.id.creator);
             debtor = (TextView) view.findViewById(R.id.debtor);
-            ammount = (TextView) view.findViewById(R.id.ammount);
+            ammount = (TextView) view.findViewById(R.id.ammount);*/
         }
     }
 
@@ -41,20 +48,23 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
 
     @Override
     public ExpenseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d("oncreateviewholder","yo");
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_expenses_item,parent,false);
         return new ExpenseViewHolder(item);
     }
 
     @Override
     public void onBindViewHolder(ExpenseViewHolder holder, int position) {
-        holder.author.setText(position);
-        holder.debtor.setText(position);
-        holder.ammount.setText(position);
+        Log.d("onbindviewholder","yo");/*;
+        holder.author.setText("abc");
+        holder.debtor.setText("abc");
+        holder.ammount.setText("abc");*/
 
     }
 
     @Override
     public int getItemCount() {
+        Log.d("ABC",expenseList.size()+"");
         return expenseList.size();
     }
 }
