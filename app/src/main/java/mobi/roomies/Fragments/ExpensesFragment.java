@@ -33,8 +33,7 @@ public class ExpensesFragment extends Fragment {
     private String mParam2;
 
     // recycler view
-    private RecyclerView recyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
+
     private ExpensesAdapter expensesAdapter;
 
 
@@ -46,7 +45,6 @@ public class ExpensesFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         expensesAdapter = new ExpensesAdapter(new ArrayList<Expense>());
-        mLayoutManager = new LinearLayoutManager(getActivity());
 
     }
 
@@ -54,21 +52,18 @@ public class ExpensesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.d("asdf",mLayoutManager.toString());
-
+        View view = inflater.inflate(R.layout.fragment_expenses,container,false);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_expenses,container,false);
-        recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
         Log.d("expense frag", expensesAdapter.getItemCount()+"");
-
         recyclerView.setAdapter(expensesAdapter);
 
         return view;
-
     }
 
     @Override
