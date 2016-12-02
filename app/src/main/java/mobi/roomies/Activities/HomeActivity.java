@@ -1,5 +1,7 @@
 package mobi.roomies.Activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -11,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,14 +27,9 @@ import mobi.roomies.R;
 
 public class HomeActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
+    private Context context;
+    private TabLayout tl;
+
     private FragmentAdapter fragmentAdapter;
 
     /**
@@ -47,8 +45,10 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        context = this;
+
         // holds layout that will hold tabs
-        TabLayout tl = (TabLayout) findViewById(R.id.tab_layout);
+        tl = (TabLayout) findViewById(R.id.tab_layout);
         // if using view pager, need following lines
         tl.setupWithViewPager((ViewPager)findViewById(R.id.container));
 
@@ -65,17 +65,14 @@ public class HomeActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
 
@@ -84,8 +81,18 @@ public class HomeActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent;
+                int currentTab = tl.getSelectedTabPosition();
+
+                switch(currentTab){
+                    case 0:break;
+                    case 1: break;
+                    case 2:{
+                        intent = new Intent(context,AddExpenseActivity.class);
+                        startActivity(intent);
+                    }break;
+                    default:break;
+                }
             }
         });
     }

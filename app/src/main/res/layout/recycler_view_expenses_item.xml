@@ -8,7 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_margin="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
         android:elevation="3dp"
         >
 
@@ -22,6 +25,7 @@
                 android:id="@+id/thumbnail"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:scaleType="fitXY"
@@ -43,14 +47,16 @@
                         android:layout_weight=".5"
                         android:layout_height="match_parent"
                         android:text="abc"
-                        />
+                        android:id="@+id/title"
+                        android:gravity="center_vertical" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_weight=".5"
                         android:layout_height="match_parent"
                         android:text="abc"
-                        />
+                        android:id="@+id/ammount"
+                        android:gravity="center_vertical" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -59,20 +65,20 @@
                     android:weightSum="1"
                     android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/expense_name"
+                        android:id="@+id/author"
                         android:layout_width="wrap_content"
                         android:layout_weight=".5"
                         android:layout_height="match_parent"
                         android:text="abc"
-                        />
+                        android:gravity="center_vertical" />
 
                     <TextView
-                        android:id="@+id/count"
+                        android:id="@+id/debtor"
                         android:layout_width="wrap_content"
                         android:layout_weight=".5"
                         android:layout_height="match_parent"
                         android:text="abc"
-                        />
+                        android:gravity="center_vertical" />
                 </LinearLayout>
             </LinearLayout>
 

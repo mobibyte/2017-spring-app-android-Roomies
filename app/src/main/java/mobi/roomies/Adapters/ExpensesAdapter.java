@@ -33,14 +33,16 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
     }
 
     public class ExpenseViewHolder extends RecyclerView.ViewHolder {
-        public TextView author, debtor, ammount;
+        public TextView author, debtor, ammount, title;
 
         public ExpenseViewHolder(View view) {
             super(view);
             Log.d("yo2","yo2");
-            /*author = (TextView) view.findViewById(R.id.creator);
+            title = (TextView) view.findViewById(R.id.title);
+            author = (TextView) view.findViewById(R.id.author);
             debtor = (TextView) view.findViewById(R.id.debtor);
-            ammount = (TextView) view.findViewById(R.id.ammount);*/
+            ammount = (TextView) view.findViewById(R.id.ammount);
+
         }
     }
 
@@ -55,10 +57,11 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
 
     @Override
     public void onBindViewHolder(ExpenseViewHolder holder, int position) {
-        Log.d("onbindviewholder","yo");/*;
-        holder.author.setText("abc");
-        holder.debtor.setText("abc");
-        holder.ammount.setText("abc");*/
+        Log.d("onbindviewholder","yo");
+        holder.author.setText("author");
+        holder.debtor.setText("debtor");
+        holder.ammount.setText("$ammount");
+        holder.title.setText("title");
 
     }
 
