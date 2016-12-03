@@ -54,8 +54,8 @@ public class HomeActivity extends AppCompatActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
+
         fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
-        
         // Set up the ViewPager with the sections adapter.
         // the adapter will determine which fragment to display, how many there are, etc
         mViewPager = (ViewPager) findViewById(R.id.container);
