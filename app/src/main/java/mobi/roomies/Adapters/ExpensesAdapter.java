@@ -30,6 +30,16 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
         this.expenseList.add(new Expense());
         this.expenseList.add(new Expense());
         this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+        this.expenseList.add(new Expense());
+
     }
 
     public class ExpenseViewHolder extends RecyclerView.ViewHolder {
