@@ -8,8 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MainActivity">
-        </activity>
+        <activity android:name=".Activities.MainActivity"></activity>
         <activity
             android:name=".Activities.HomeActivity"
             android:label="@string/title_activity_home"
@@ -20,6 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Activities.AddExpenseActivity"
+            android:label="@string/title_activity_add_expense"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
