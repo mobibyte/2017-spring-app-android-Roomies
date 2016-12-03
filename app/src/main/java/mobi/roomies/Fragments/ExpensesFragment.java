@@ -53,7 +53,7 @@ public class ExpensesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_expenses,container,false);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.expense_recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         // Inflate the layout for this fragment
 

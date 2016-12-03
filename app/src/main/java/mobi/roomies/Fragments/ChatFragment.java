@@ -1,14 +1,20 @@
 package mobi.roomies.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import mobi.roomies.Adapters.ChatAdapter;
 import mobi.roomies.R;
+import mobi.roomies.models.ChatItem;
 
 /*
     Created by Kevin Chung
@@ -25,6 +31,11 @@ public class ChatFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
+
+    private ChatAdapter chatAdapter;
+
+
     public ChatFragment() {
         // Required empty public constructor
     }
@@ -32,18 +43,33 @@ public class ChatFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        chatAdapter = new ChatAdapter(new ArrayList<ChatItem>());
     }
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_chat,container,false);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.chat_recycler_view);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(chatAdapter);
+
+        return view;
+
+
     }
+
+
+
 
     @Override
     public void onAttach(Context context) {
