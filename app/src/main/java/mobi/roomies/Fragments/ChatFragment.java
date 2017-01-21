@@ -2,6 +2,7 @@ package mobi.roomies.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,8 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
+import com.google.firebase.database.DatabaseReference;
 
+import java.util.ArrayList;
 import mobi.roomies.Adapters.ChatAdapter;
 import mobi.roomies.R;
 import mobi.roomies.models.ChatItem;
@@ -26,6 +28,10 @@ public class ChatFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+
+
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;

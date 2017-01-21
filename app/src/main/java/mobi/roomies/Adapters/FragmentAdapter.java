@@ -1,5 +1,6 @@
 package mobi.roomies.Adapters;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -8,6 +9,7 @@ import mobi.roomies.Fragments.CalendarFragment;
 import mobi.roomies.Fragments.ChatFragment;
 import mobi.roomies.Fragments.ExpensesFragment;
 import mobi.roomies.Fragments.TaskFragment;
+import mobi.roomies.R;
 
 /**
  * Created by Kevin on 10/28/2016.
@@ -29,6 +31,8 @@ public class FragmentAdapter extends FragmentPagerAdapter {
         public int getCount() {
             return NUM_ITEMS;
         }
+
+
 
         // Returns the fragment to display for that page
         @Override

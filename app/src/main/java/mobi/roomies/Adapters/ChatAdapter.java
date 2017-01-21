@@ -1,5 +1,6 @@
 package mobi.roomies.Adapters;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,6 +28,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     public ChatAdapter(ArrayList<ChatItem> chatItemArrayList){
         Log.d("YO","YO");
+
+
         this.chatItemArrayList = new ArrayList<>();
         this.chatItemArrayList.add(new ChatItem());
         this.chatItemArrayList.add(new ChatItem());

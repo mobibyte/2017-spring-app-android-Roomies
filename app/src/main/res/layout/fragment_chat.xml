@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,10 +15,35 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:id="@+id/chat_recycler_view"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#FFFFFF">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chat_bar"
+                >
+                <EditText
+                    android:id ="@+id/edtInput"
+                    android:layout_width ="0dip"
+                    android:layout_height ="wrap_content"
+                    android:layout_weight ="1"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines ="4"
+                    android:maxLength ="2000"
+                    android:hint ="chat"
+                    android:scrollHorizontally="false" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_send_black_24dp"
+                    android:id="@+id/imageButton" />
+            </LinearLayout>
+        </RelativeLayout>
 
 
     </RelativeLayout>
-
-
-
 </FrameLayout>

@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import mobi.roomies.Adapters.FragmentAdapter;
@@ -63,6 +64,10 @@ public class HomeActivity extends AppCompatActivity {
         mViewPager.setAdapter(fragmentAdapter);
 
         //this will change the FAB icon based on which tab you go to. not yet implemented
+
+
+
+
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -70,6 +75,22 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
+                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                switch(position){
+                    case 0:fab.hide();
+                            break;
+                    case 1:fab.show();
+                        break;
+                    case 2:fab.show();
+                        break;
+                    case 3:fab.show();
+                        break;
+                    default:fab.show();
+                        break;
+                }
+                final InputMethodManager imm = (InputMethodManager)getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mViewPager.getWindowToken(), 0);
             }
 
             @Override
@@ -77,8 +98,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.hide();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,8 +107,10 @@ public class HomeActivity extends AppCompatActivity {
                 int currentTab = tl.getSelectedTabPosition();
 
                 switch(currentTab){
-                    case 0:break;
-                    case 1: break;
+                    case 0:
+                        break;
+                    case 1:
+                        break;
                     case 2:{
                         intent = new Intent(context,AddExpenseActivity.class);
                         startActivity(intent);
@@ -120,6 +143,7 @@ public class HomeActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 
 }
