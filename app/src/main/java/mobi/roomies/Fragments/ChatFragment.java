@@ -7,16 +7,23 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import mobi.roomies.Adapters.ChatAdapter;
 import mobi.roomies.R;
 import mobi.roomies.models.ChatItem;
+
+import static com.google.android.gms.internal.zzs.TAG;
 
 /*
     Created by Kevin Chung
@@ -30,12 +37,11 @@ public class ChatFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
 
+    ArrayList<ChatItem> chatItemArrayList;
 
 
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
 
 
 
@@ -49,7 +55,43 @@ public class ChatFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        chatAdapter = new ChatAdapter(new ArrayList<ChatItem>());
+        chatItemArrayList = new ArrayList<ChatItem>();
+        chatAdapter = new ChatAdapter(chatItemArrayList);
+
+
+        // Read from the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("messages");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+
+                for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
+                    Log.d("name debug",messageSnapshot.child("name").getValue().toString());
+                    String name =  messageSnapshot.child("name").getValue().toString();
+                    String message =  messageSnapshot.child("text").getValue().toString();
+
+                    Log.d("chatMessage","chat message name:"+name+"chat message message:"+message);
+                    ChatItem chatMessage = new ChatItem(name,message);
+
+                    chatItemArrayList.add(chatMessage);
+                    Log.d("array list",Integer.toString(chatItemArrayList.size()));
+
+                }
+                chatAdapter.notifyItemInserted(chatItemArrayList.size() - 1);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
     }
 
 

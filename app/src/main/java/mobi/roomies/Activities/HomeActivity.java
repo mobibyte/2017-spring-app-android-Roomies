@@ -23,6 +23,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+
 import mobi.roomies.Adapters.FragmentAdapter;
 import mobi.roomies.R;
 
@@ -37,6 +39,9 @@ public class HomeActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
