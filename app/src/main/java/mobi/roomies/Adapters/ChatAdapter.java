@@ -67,6 +67,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     }
 
 
+    public void removeAllItems(){
+
+        chatItemArrayList.clear();
+    }
+
 
 
 
