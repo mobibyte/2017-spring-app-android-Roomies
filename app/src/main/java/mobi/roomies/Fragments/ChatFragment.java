@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import mobi.roomies.Adapters.ChatAdapter;
 import mobi.roomies.R;
@@ -41,8 +42,9 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM2 = "param2";
     private DatabaseReference chatDatabaseReference;
 
-
+    EditText userTypedText;
     ArrayList<ChatItem> chatItemArrayList;
+    RecyclerView recyclerView;
 
 
 
@@ -59,7 +61,6 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         chatItemArrayList = new ArrayList<ChatItem>();
         chatAdapter = new ChatAdapter(chatItemArrayList);
 
-
         // Read from the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         chatDatabaseReference = database.getReference("messages");
@@ -68,8 +69,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-
-
+                chatAdapter.removeAllItems();
                 for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
                     Log.d("name debug",messageSnapshot.child("name").getValue().toString());
                     String name =  messageSnapshot.child("name").getValue().toString();
@@ -83,6 +83,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
                 }
                 chatAdapter.notifyItemInserted(chatItemArrayList.size() - 1);
+                recyclerView.smoothScrollToPosition(chatItemArrayList.size() - 1);
 
             }
 
@@ -103,7 +104,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_chat,container,false);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.chat_recycler_view);
+        recyclerView = (RecyclerView)view.findViewById(R.id.chat_recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         // Inflate the layout for this fragment
 
@@ -114,7 +115,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
         ImageButton sendMessageButton = (ImageButton) view.findViewById(R.id.sendMessageButton);
         sendMessageButton.setOnClickListener(this);
-
+        userTypedText = (EditText)view.findViewById(R.id.chatInputText);
         return view;
     }
 
@@ -148,11 +149,17 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
             case R.id.sendMessageButton:
                 Log.d("in message","sending message");
                 //TODO: this section needs to be updated on the new firebase structure
-                String textMessage = ((EditText)v.findViewById(R.id.chatInputText)).getText().toString();
-                String key = chatDatabaseReference.child("posts").push().getKey();
-                HashMap<String, Object> chatHash = new HashMap<>();
-                chatHash.put("name","MyPhone");
-                chatHash.put("text",textMessage);
+                String textMessage = userTypedText.getText().toString();
+                String key = chatDatabaseReference.child("messages").push().getKey();
+                Map<String, Object> postValues = new HashMap<>();
+                postValues.put("name","MyPhone");
+                postValues.put("text",textMessage);
+                Map<String, Object> childUpdates = new HashMap<>();
+                childUpdates.put(key,postValues);
+                chatDatabaseReference.updateChildren(childUpdates);
+
+
+                userTypedText.setText("");
                 break;
             default:
                 break;
