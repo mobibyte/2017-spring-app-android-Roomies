@@ -23,6 +23,13 @@
             android:name=".Activities.AddExpenseActivity"
             android:label="@string/title_activity_add_expense"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".Activities.AddTaskActivity"
+            android:label="AddTaskActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+        </activity>
     </application>
 
 </manifest>

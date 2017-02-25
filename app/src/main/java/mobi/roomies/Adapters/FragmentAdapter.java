@@ -13,6 +13,7 @@ import mobi.roomies.Fragments.TaskFragment;
  * Created by Kevin on 10/28/2016.
  */
 public class FragmentAdapter extends FragmentPagerAdapter {
+
         /*
             Number of tabs, chat(not yet implemented), tasks, calendar,expenses (bills)
             each tab should tie to a specific fragment
@@ -52,5 +53,4 @@ public class FragmentAdapter extends FragmentPagerAdapter {
         public CharSequence getPageTitle(int position) {
             return titles[position];
         }
-
 }
