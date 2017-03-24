@@ -36,7 +36,7 @@
             android:text="YOU OWE ME MONEY HOE WHERE IS THE MONEY AT. I NEED MY MONEYYYYYY. LOOK THIS TEXT WRAPS ALL THE WAY AROUND BECAUES I NEED IT FOR TESTING PURPOSES OMG LOOK. MORE TEXT. WOW THIS TEXT KEEPS GOING. I AM DOG WOOF WOOF WOOF WOOF WOOF WOOF WOOF WOOF WOOF."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"
+            android:id="@+id/chatText"
             android:background="#dddddd"/>
 
 

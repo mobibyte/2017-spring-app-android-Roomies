@@ -1,13 +1,42 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="mobi.roomies.Fragments.ChatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/chat_recycler_view"
+            android:layout_weight="2"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chat_bar">
+            <EditText
+                android:id ="@+id/chatInputText"
+                android:layout_width ="0dp"
+                android:layout_height ="wrap_content"
+                android:layout_weight ="2"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines ="4"
+                android:maxLength ="2000"
+                android:hint ="chat"
+                android:scrollHorizontally="false"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_send_black_24dp"
+                android:id="@+id/sendMessageButton" />
+        </LinearLayout>
+    </LinearLayout>
 </FrameLayout>

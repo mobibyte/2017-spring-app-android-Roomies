@@ -2,6 +2,7 @@ package mobi.roomies.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -53,7 +54,7 @@ public class ExpensesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_expenses,container,false);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.expense_recycler_view);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         // Inflate the layout for this fragment
 
