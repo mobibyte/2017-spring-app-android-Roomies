@@ -10,5 +10,5 @@
     <string name="title_activity_add_expense">AddExpenseActivity</string>
     <string name="facebook_app_id">1738963496423317</string>
     <string name="facebook_app_id_authorities">com.facebook.app.FacebookContentProvider1738963496423317"</string>
-
+    <string name="title_activity_add_task">Add Task</string>
 </resources>

@@ -1,5 +1,6 @@
 package mobi.roomies.Activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 
 import mobi.roomies.Adapters.FragmentAdapter;
+import mobi.roomies.Fragments.TaskFragment;
 import mobi.roomies.R;
 
 public class HomeActivity extends AppCompatActivity {
@@ -80,6 +82,11 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
+                Log.d("TAG", "New page selected " + position);
+                Fragment selected = fragmentAdapter.getItem(tl.getSelectedTabPosition());
+                if(selected instanceof TaskFragment) {
+                    ((TaskFragment)selected).reloadData();
+                }
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                 switch(position){
                     case 0:fab.hide();
@@ -115,17 +122,26 @@ public class HomeActivity extends AppCompatActivity {
                     case 0:
                         break;
                     case 1:
+                        intent = new Intent(context, AddTaskActivity.class);
+                        startActivityForResult(intent, Activity.RESULT_OK);
                         break;
-                    case 2:{
+                    case 2:
                         intent = new Intent(context,AddExpenseActivity.class);
                         startActivity(intent);
-                    }break;
-                    default:break;
+                        break;
+                    default:
+                        break;
                 }
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //whatever
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
