@@ -58,12 +58,12 @@ public class CalendarFragment extends Fragment {
 
     // new instance constructor required to create a new fragment with arguments
     // change eventually
-    public static ChatFragment newInstance(String page, String title) {
-        ChatFragment chatFragment = new ChatFragment();
+    public static CalendarFragment newInstance(String page, String title) {
+        CalendarFragment calendarFragment = new CalendarFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, page);
         args.putString(ARG_PARAM2, title);
-        chatFragment.setArguments(args);
-        return chatFragment;
+        calendarFragment.setArguments(args);
+        return calendarFragment;
     }
 }
