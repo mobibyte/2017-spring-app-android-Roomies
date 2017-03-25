@@ -12,8 +12,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 
-import com.squareup.timessquare.CalendarPickerView;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,7 +20,6 @@ import mobi.roomies.Fragments.TaskFragment;
 import mobi.roomies.R;
 import mobi.roomies.models.Task;
 
-import static com.squareup.timessquare.CalendarPickerView.SelectionMode.RANGE;
 
 /**
  * Created by kolten on 2/10/17.

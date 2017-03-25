@@ -20,19 +20,12 @@
         <activity
             android:name=".Activities.AddExpenseActivity"
             android:label="@string/title_activity_add_expense"
-<<<<<<< HEAD
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity
-            android:name=".Activities.AddTaskActivity"
-            android:label="AddTaskActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
-=======
             android:theme="@style/AppTheme.NoActionBar">
-
->>>>>>> 60c0859c3ee149efbc741c9fc755d3e5cac79243
         </activity>
+
+        <activity android:name=".Activities.AddTaskActivity"
+            android:label="@string/title_activity_add_task"
+            />
     </application>
 
 </manifest>
