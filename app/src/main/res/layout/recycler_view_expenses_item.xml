@@ -40,6 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
+                    android:paddingLeft="10dp"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
@@ -53,6 +54,7 @@
 
                     <TextView
                         android:id="@+id/ammount"
+                        android:paddingRight="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight=".5"
@@ -69,6 +71,7 @@
 
                     <TextView
                         android:id="@+id/author"
+                        android:paddingLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight=".5"
@@ -77,6 +80,7 @@
 
                     <TextView
                         android:id="@+id/debtor"
+                        android:paddingRight="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight=".5"

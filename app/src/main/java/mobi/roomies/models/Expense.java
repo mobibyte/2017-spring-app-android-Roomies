@@ -6,6 +6,8 @@ package mobi.roomies.models;
 
 public class Expense {
 
+    
+
     public Expense(){
 
     }

@@ -60,14 +60,12 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
 
     @Override
     public ExpenseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d("oncreateviewholder","yo");
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_expenses_item,parent,false);
         return new ExpenseViewHolder(item);
     }
 
     @Override
     public void onBindViewHolder(ExpenseViewHolder holder, int position) {
-        Log.d("onbindviewholder","yo");
         holder.author.setText("author");
         holder.debtor.setText("debtor");
         holder.ammount.setText("$ammount");
