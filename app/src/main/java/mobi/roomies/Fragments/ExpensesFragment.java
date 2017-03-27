@@ -92,11 +92,10 @@ public class ExpensesFragment extends Fragment {
         super.onStart();
 
         //database = FirebaseDatabase.getInstance().getReference().child("groups");
+
         //Read from DB
-        // this needs to get fixed, hard coding it to the first value rn just to demo
+        // this needs to get fixed, hard coding it(the reference) to the first value rn just to demo
         // above database reference should be used later
-
-
         database = FirebaseDatabase.getInstance().getReference("/groups/-KfwGKBg61gJUACz87Mn").child("expenses");
         database.addValueEventListener(new ValueEventListener() {
             @Override
