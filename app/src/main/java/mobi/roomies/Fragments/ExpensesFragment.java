@@ -11,6 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -34,8 +41,14 @@ public class ExpensesFragment extends Fragment {
     private String mParam2;
 
     // recycler view
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     private ExpensesAdapter expensesAdapter;
+
+    private DatabaseReference database;
+    private DatabaseReference rootReference;
+    private DatabaseReference groupReference;
 
 
     public ExpensesFragment() {
@@ -54,17 +67,46 @@ public class ExpensesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_expenses,container,false);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.expense_recycler_view);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView = (RecyclerView)view.findViewById(R.id.expense_recycler_view);
+        mLayoutManager = new LinearLayoutManager(getActivity());
         // Inflate the layout for this fragment
 
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        Log.d("expense frag", expensesAdapter.getItemCount()+"");
         recyclerView.setAdapter(expensesAdapter);
 
         return view;
+    }
+
+    // start firebase network connections here
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        database = FirebaseDatabase.getInstance().getReference().child("groups");
+
+
+        // Read from the database
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("db len",dataSnapshot.getChildrenCount()+"");
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for(DataSnapshot expenseSnapshot : dataSnapshot.getChildren()){
+                    Log.d("DBDEBUG", expenseSnapshot.getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Toast.makeText(getContext(),"error",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
     }
 
     @Override

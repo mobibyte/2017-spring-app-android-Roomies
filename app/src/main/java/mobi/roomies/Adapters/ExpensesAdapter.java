@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,39 +25,27 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
     private ArrayList<Expense> expenseList;
 
     public ExpensesAdapter(ArrayList<Expense> expenseList){
-        Log.d("YO","YO");
-        this.expenseList = new ArrayList<>();
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
-        this.expenseList.add(new Expense());
+        this.expenseList = new ArrayList<Expense>();
+        this.expenseList.add(new Expense("title","type","owedto","owedfrom", "amount", "emoji"));
 
     }
 
     public class ExpenseViewHolder extends RecyclerView.ViewHolder {
-        public TextView author, debtor, ammount, title;
+        public TextView title,type,owedto,owedfrom, amount;
+        public ImageView emoji;
 
         public ExpenseViewHolder(View view) {
             super(view);
-            Log.d("yo2","yo2");
             title = (TextView) view.findViewById(R.id.title);
-            author = (TextView) view.findViewById(R.id.author);
-            debtor = (TextView) view.findViewById(R.id.debtor);
-            ammount = (TextView) view.findViewById(R.id.ammount);
+            type = (TextView) view.findViewById(R.id.author);
+            owedto = (TextView) view.findViewById(R.id.debtor);
+            emoji = (ImageView) view.findViewById(R.id.emoji);
+            amount = (TextView) view.findViewById(R.id.amount);
+
+
 
         }
     }
-
-
 
     @Override
     public ExpenseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -66,10 +55,12 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
 
     @Override
     public void onBindViewHolder(ExpenseViewHolder holder, int position) {
-        holder.author.setText("author");
-        holder.debtor.setText("debtor");
-        holder.ammount.setText("$ammount");
-        holder.title.setText("title");
+        Expense currentExpense = expenseList.get(position);
+        holder.title.setText(currentExpense.getTitle());
+        holder.type.setText(currentExpense.getType());
+        holder.owedto.setText(currentExpense.getOwedToUserName());
+        holder.amount.setText(currentExpense.getAmount());
+
 
     }
 
