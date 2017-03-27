@@ -25,8 +25,8 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
     private ArrayList<Expense> expenseList;
 
     public ExpensesAdapter(ArrayList<Expense> expenseList){
-        this.expenseList = new ArrayList<Expense>();
-        this.expenseList.add(new Expense("title","type","owedto","owedfrom", "amount", "emoji"));
+        this.expenseList = expenseList;
+        //this.expenseList.add(new Expense("title","type","owedto","owedfrom", "amount", "emoji"));
 
     }
 
@@ -56,10 +56,11 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
     @Override
     public void onBindViewHolder(ExpenseViewHolder holder, int position) {
         Expense currentExpense = expenseList.get(position);
+       // Log.d("viewholder db",currentExpense.getTitle());
         holder.title.setText(currentExpense.getTitle());
         holder.type.setText(currentExpense.getType());
-        holder.owedto.setText(currentExpense.getOwedToUserName());
-        holder.amount.setText(currentExpense.getAmount());
+       // holder.owedto.setText(currentExpense.getOwedToUserName());
+        holder.amount.setText("$"+currentExpense.getAmount());
 
 
     }

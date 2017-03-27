@@ -6,36 +6,12 @@ package mobi.roomies.models;
 
 public class Expense {
 
-    private String title, type, owedToUserName, owedFromUserName, amount, emoji;
+    //private String title, type, owedToUserName, owedFromUserName, amount, emoji;
 
+    //temp to make it work
+    private String amount, title, username, type, emoji;
 
-    public Expense(String title, String type, String owedToUserName, String owedFromUserName, String amount, String emoji) {
-        this.title = title;
-        this.type = type;
-        this.owedToUserName = owedToUserName;
-        this.owedFromUserName = owedFromUserName;
-        this.amount = amount;
-        this.emoji = emoji;
-    }
-
-    public Expense(){
-
-    }
-
-    public String getEmoji() {
-        return emoji;
-    }
-
-    public void setEmoji(String emoji) {
-        this.emoji = emoji;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTitle() {
-        return title;
+    public Expense() {
     }
 
     public String getAmount() {
@@ -46,32 +22,35 @@ public class Expense {
         this.amount = amount;
     }
 
-    public void setType(String title) {
-        this.type = title;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getType() {
         return type;
     }
 
-
-    public String getOwedToUserName() {
-        return owedToUserName;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setOwedToUserName(String owedToUserName) {
-        this.owedToUserName = owedToUserName;
+    public String getEmoji() {
+        return emoji;
     }
 
-    public String getOwedFromUserName() {
-        return owedFromUserName;
-    }
-
-    public void setOwedFromUserName(String owedFromUserName) {
-        this.owedFromUserName = owedFromUserName;
-    }
-
-    public String toString(){
-        return title;
+    public void setEmoji(String emoji) {
+        this.emoji = emoji;
     }
 }
