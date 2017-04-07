@@ -39,7 +39,7 @@ public class FacebookLoginActivity extends FragmentActivity {
     private static final String TAG = "Facebook L";
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
+        FacebookSdk.setApplicationId(getResources().getString(R.string.facebook_app_id));
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         super.onCreate(savedInstanceState);

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" assert-keyword="false" jdk-15="false" />
+=======
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
@@ -43,4 +46,24 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+>>>>>>> ebbd8239dc602606d84ceb3ca9a5854df2755ac6
+>>>>>>> 94ad9068b541115fd4ba4ad84e96eccc6edea300
 </project>

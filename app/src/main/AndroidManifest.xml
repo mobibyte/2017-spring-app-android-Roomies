@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mobi.roomies">
+package="mobi.roomies">
 
     <application
         android:allowBackup="true"
@@ -21,7 +21,21 @@
             android:name=".Activities.AddExpenseActivity"
             android:label="@string/title_activity_add_expense"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
+        <activity android:name=".Activities.AddTaskActivity"
+            android:label="@string/title_activity_add_task"
+            />
+        <activity
+            android:name=".Activities.FacebookLoginActivity"
+            android:label="@string/facebook_login_title"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         </activity>
     </application>
 
