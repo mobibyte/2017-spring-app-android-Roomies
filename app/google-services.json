@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "393416802911-q7pa7hepgl1fcf6r8l05itvb3b5q4dok.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mobi.roomies",
+            "certificate_hash": "d13a50f818ef878d3a4836c46080c17a2b9b1c7c"
+          }
+        },
+        {
           "client_id": "393416802911-5gpg6o0u70uaq40b880holesldmsjvqn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -30,6 +38,9 @@
       "api_key": [
         {
           "current_key": "AIzaSyBtDcC4fnpRuDwQ2LfHaq0yl2L4LCPtSg4"
+        },
+        {
+          "current_key": "AIzaSyDtVul-kOoQCXPTkinreGepg7ujlPIfX-c"
         }
       ],
       "services": {

@@ -47,6 +47,7 @@ public class FacebookLoginActivity extends FragmentActivity {
     private static final String TAG = "FacebookLogin";
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         FacebookSdk.setApplicationId(getResources().getString(R.string.facebook_app_id));
         FacebookSdk.sdkInitialize(getApplicationContext());
 
@@ -89,6 +90,7 @@ public class FacebookLoginActivity extends FragmentActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                Log.d(TAG, "in on Success method. Tocken is...:"+loginResult.getAccessToken().getToken());
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
@@ -104,6 +106,7 @@ public class FacebookLoginActivity extends FragmentActivity {
                 // ...
             }
         });
+
     }
 
 
@@ -111,18 +114,25 @@ public class FacebookLoginActivity extends FragmentActivity {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        Log.d(TAG, "handleFacebook Credential:"+credential);
         mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-                    if (!task.isSuccessful()) {
-                        Log.w(TAG, "signInWithCredential", task.getException());
-                        Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "signInWithCredential", task.getException());
+                            Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
                     }
-                }
-            });
+                });
     }
 
     @Override
@@ -145,5 +155,8 @@ public class FacebookLoginActivity extends FragmentActivity {
         // Pass the activity result back to the Facebook SDK
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
+
 }
 
