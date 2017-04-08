@@ -1,46 +1,27 @@
 {
   "project_info": {
-    "project_number": "393416802911",
-    "firebase_url": "https://roomies-android-de2ca.firebaseio.com",
-    "project_id": "roomies-android-de2ca",
-    "storage_bucket": "roomies-android-de2ca.appspot.com"
+    "project_number": "272532296309",
+    "firebase_url": "https://roomies-de4fa.firebaseio.com",
+    "project_id": "roomies-de4fa",
+    "storage_bucket": "roomies-de4fa.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:393416802911:android:e40a884e5a9676b4",
+        "mobilesdk_app_id": "1:272532296309:android:e40a884e5a9676b4",
         "android_client_info": {
           "package_name": "mobi.roomies"
         }
       },
       "oauth_client": [
         {
-          "client_id": "393416802911-q7pa7hepgl1fcf6r8l05itvb3b5q4dok.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "mobi.roomies",
-            "certificate_hash": "d13a50f818ef878d3a4836c46080c17a2b9b1c7c"
-          }
-        },
-        {
-          "client_id": "393416802911-5gpg6o0u70uaq40b880holesldmsjvqn.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "mobi.roomies",
-            "certificate_hash": "0d49eaafac5a8eb08bd0bf15747695298bb7d2a5"
-          }
-        },
-        {
-          "client_id": "393416802911-hudu7r36g037l3thcokai7h43482teb9.apps.googleusercontent.com",
+          "client_id": "272532296309-l6lt47v5o17hrbumcimo4a8kna7dett3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBtDcC4fnpRuDwQ2LfHaq0yl2L4LCPtSg4"
-        },
-        {
-          "current_key": "AIzaSyDtVul-kOoQCXPTkinreGepg7ujlPIfX-c"
+          "current_key": "AIzaSyCER8WAl63LSTwijW5hFBHg-82-Tw1Q5hA"
         }
       ],
       "services": {
@@ -48,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "393416802911-hudu7r36g037l3thcokai7h43482teb9.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
