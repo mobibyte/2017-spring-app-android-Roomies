@@ -1,58 +1,27 @@
 {
   "project_info": {
-    "project_number": "431392932534",
-    "firebase_url": "https://temporaryroomies.firebaseio.com",
-    "project_id": "temporaryroomies",
-    "storage_bucket": "temporaryroomies.appspot.com"
+    "project_number": "272532296309",
+    "firebase_url": "https://roomies-de4fa.firebaseio.com",
+    "project_id": "roomies-de4fa",
+    "storage_bucket": "roomies-de4fa.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:431392932534:android:00c6245adb2f4160",
-        "android_client_info": {
-          "package_name": "com.mobi.roomies"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "431392932534-tu9ojep0rj9c2gki2cc0tb0gbka5mjga.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB1jYwQp-4mLMRFPV3lQU66zxu_Q5j91vs"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:431392932534:android:e40a884e5a9676b4",
+        "mobilesdk_app_id": "1:272532296309:android:e40a884e5a9676b4",
         "android_client_info": {
           "package_name": "mobi.roomies"
         }
       },
       "oauth_client": [
         {
-          "client_id": "431392932534-tu9ojep0rj9c2gki2cc0tb0gbka5mjga.apps.googleusercontent.com",
+          "client_id": "272532296309-l6lt47v5o17hrbumcimo4a8kna7dett3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB1jYwQp-4mLMRFPV3lQU66zxu_Q5j91vs"
+          "current_key": "AIzaSyCER8WAl63LSTwijW5hFBHg-82-Tw1Q5hA"
         }
       ],
       "services": {

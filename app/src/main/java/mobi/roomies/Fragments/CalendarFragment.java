@@ -58,7 +58,7 @@ import mobi.roomies.R;
     Fragment used to contain the chat functionality UI
     this fragment will utilize firebase to handle messaging via firebase
  */
-public class CalendarFragment extends Fragment {
+public class CalendarFragment extends Fragment implements EasyPermissions.PermissionCallbacks {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -136,12 +136,13 @@ public class CalendarFragment extends Fragment {
                 .setBackOff(new ExponentialBackOff());
     }
 
+    /*
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_calendar, container, false);
-    }
+    }*/
 
 
     /**
