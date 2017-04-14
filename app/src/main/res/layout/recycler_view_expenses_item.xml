@@ -8,12 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:layout_marginBottom="4dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
-        android:elevation="3dp"
-        >
+        android:elevation="3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,63 +21,71 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/thumbnail"
+                android:id="@+id/emoji"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_gravity="center_vertical"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
                 android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_launcher" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:weightSum="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:weightSum="1">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
-                    android:weightSum="1"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_weight=".5"
-                        android:layout_height="match_parent"
-                        android:text="abc"
-                        android:id="@+id/title"
-                        android:gravity="center_vertical" />
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:weightSum="1">
 
                     <TextView
+                        android:id="@+id/title"
                         android:layout_width="wrap_content"
-                        android:layout_weight=".5"
                         android:layout_height="match_parent"
-                        android:text="abc"
-                        android:id="@+id/ammount"
-                        android:gravity="center_vertical" />
+                        android:layout_weight=".5"
+                        android:gravity="center_vertical"
+                        android:text="abc" />
+
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="10dp"
+                        android:text="abc" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".5"
-                    android:weightSum="1"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
                     <TextView
                         android:id="@+id/author"
                         android:layout_width="wrap_content"
-                        android:layout_weight=".5"
                         android:layout_height="match_parent"
-                        android:text="abc"
-                        android:gravity="center_vertical" />
+                        android:layout_weight=".5"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="abc" />
 
                     <TextView
                         android:id="@+id/debtor"
                         android:layout_width="wrap_content"
-                        android:layout_weight=".5"
                         android:layout_height="match_parent"
-                        android:text="abc"
-                        android:gravity="center_vertical" />
+                        android:layout_weight=".5"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="10dp"
+                        android:text="abc" />
                 </LinearLayout>
             </LinearLayout>
 

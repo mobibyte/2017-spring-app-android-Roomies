@@ -64,7 +64,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         // Read from the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         chatDatabaseReference = database.getReference("messages");
-        chatDatabaseReference.addValueEventListener(new ValueEventListener() {
+     /*   chatDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -92,7 +92,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
-        });
+        });*/
 
     }
 
