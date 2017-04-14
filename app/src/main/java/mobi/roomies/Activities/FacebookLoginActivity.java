@@ -62,7 +62,6 @@ public class FacebookLoginActivity extends FragmentActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        db.child("dearfirebase").setValue("Fuck u");
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -74,12 +73,14 @@ public class FacebookLoginActivity extends FragmentActivity {
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
 
                     Map<String, Object> data = new HashMap<>();
-                    data.put("avatarUrl", user.getPhotoUrl());
-                    data.put("email", user.getEmail());
-                    data.put("name", user.getDisplayName());
+                    data.put("avatarUrl", user.getPhotoUrl().toString());
+                    data.put("email", user.getEmail().toString());
+                    data.put("name", user.getDisplayName().toString());
                     data.put("device", "Android");
-
                     db.child("users").child(user.getUid()).setValue(data);
+
+                    //change to join room thingy
+
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
