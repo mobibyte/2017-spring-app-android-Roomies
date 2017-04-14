@@ -18,11 +18,18 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import mobi.roomies.R;
 
@@ -33,23 +40,55 @@ public class FacebookLoginActivity extends FragmentActivity {
 
     private TextView info;
     private FirebaseAuth mAuth;
+    private DatabaseReference db;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private static final String TAG = "Facebook L";
+
+    private static final String TAG = "FacebookLogin";
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        FacebookSdk.setApplicationId(getResources().getString(R.string.facebook_app_id));
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facebook_login);
+
+        this.db = FirebaseDatabase.getInstance().getReference();
+
         info = (TextView)findViewById(R.id.text_view_facebook);
         loginButton = (LoginButton)findViewById(R.id.login_button);
 
         mAuth = FirebaseAuth.getInstance();
 
 
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                Log.d(TAG, "FIRE BASE AUTH STATE CHANGED");
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("avatarUrl", user.getPhotoUrl().toString());
+                    data.put("email", user.getEmail().toString());
+                    data.put("name", user.getDisplayName().toString());
+                    data.put("device", "Android");
+                    db.child("users").child(user.getUid()).setValue(data);
+
+                    //change to join room thingy
+                    Intent intent = new Intent(FacebookLoginActivity.this,JoinRoomActivity.class);
+                    FacebookLoginActivity.this.startActivity(intent);
+
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+            }
+        };
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -58,6 +97,7 @@ public class FacebookLoginActivity extends FragmentActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                Log.d(TAG, "in on Success method. Tocken is...:"+loginResult.getAccessToken().getToken());
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
@@ -74,54 +114,58 @@ public class FacebookLoginActivity extends FragmentActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
+        Log.d(TAG, "handleFacebookAccessToken:" + token.getToken());
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            //task.get
-                        }
-                    }
-                });
+        Log.d(TAG, "handleFacebook Credential:"+credential);
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.d(TAG, "sign in complete " + task.isSuccessful());
+            }
+        }).addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "YO SHIT FAILED " + e.toString());
+            }
+        });
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
+//
+//                        // If sign in fails, display a message to the user. If sign in succeeds
+//                        // the auth state listener will be notified and logic to handle the
+//                        // signed in user can be handled in the listener.
+//                        if (!task.isSuccessful()) {
+//                            Log.w(TAG, "signInWithCredential", task.getException());
+//                            Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        // ...
+//                    }
+//                });
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
 
-
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -129,5 +173,8 @@ public class FacebookLoginActivity extends FragmentActivity {
         // Pass the activity result back to the Facebook SDK
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
+
 }
 
