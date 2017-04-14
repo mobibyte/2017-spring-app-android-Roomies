@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" assert-keyword="false" jdk-15="false" />
 =======
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+=======
+>>>>>>> master
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
@@ -46,6 +49,7 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+<<<<<<< HEAD
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">
@@ -63,4 +67,6 @@
     </states>
   </component>
 >>>>>>> ebbd8239dc602606d84ceb3ca9a5854df2755ac6
+=======
+>>>>>>> master
 </project>
