@@ -11,8 +11,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import mobi.roomies.Adapters.ExpensesAdapter;
 import mobi.roomies.R;
@@ -34,8 +46,15 @@ public class ExpensesFragment extends Fragment {
     private String mParam2;
 
     // recycler view
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     private ExpensesAdapter expensesAdapter;
+    private ArrayList<Expense> expenseList;
+
+    private DatabaseReference database;
+    private DatabaseReference rootReference;
+    private DatabaseReference groupReference;
 
 
     public ExpensesFragment() {
@@ -45,7 +64,8 @@ public class ExpensesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        expensesAdapter = new ExpensesAdapter(new ArrayList<Expense>());
+        expenseList = new ArrayList<Expense>();
+        expensesAdapter = new ExpensesAdapter(expenseList);
 
     }
 
@@ -54,17 +74,50 @@ public class ExpensesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_expenses,container,false);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.expense_recycler_view);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView = (RecyclerView)view.findViewById(R.id.expense_recycler_view);
+        mLayoutManager = new LinearLayoutManager(getActivity());
         // Inflate the layout for this fragment
 
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        Log.d("expense frag", expensesAdapter.getItemCount()+"");
         recyclerView.setAdapter(expensesAdapter);
 
         return view;
+    }
+
+    // start firebase network connections here
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        //database = FirebaseDatabase.getInstance().getReference().child("groups");
+
+        //Read from DB
+        // this needs to get fixed, hard coding it(the reference) to the first value rn just to demo
+        // above database reference should be used later
+        database = FirebaseDatabase.getInstance().getReference("/groups/-KfwGKBg61gJUACz87Mn").child("expenses");
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Again this is hard coded so this will need to change when we set things up proper
+                for(DataSnapshot expenseSnapshot: dataSnapshot.getChildren()){
+                    Expense expense = expenseSnapshot.getValue(Expense.class);
+                    Log.d("expense debug ", expense.getAmount());
+                    expenseList.add(expense);
+                }
+                Log.d("expense list debug",expenseList.size()+"");
+                expensesAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Toast.makeText(getContext(),"error",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
     }
 
     @Override
