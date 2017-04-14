@@ -80,6 +80,8 @@ public class FacebookLoginActivity extends FragmentActivity {
                     db.child("users").child(user.getUid()).setValue(data);
 
                     //change to join room thingy
+                    Intent intent = new Intent(FacebookLoginActivity.this,JoinRoomActivity.class);
+                    FacebookLoginActivity.this.startActivity(intent);
 
                 } else {
                     // User is signed out

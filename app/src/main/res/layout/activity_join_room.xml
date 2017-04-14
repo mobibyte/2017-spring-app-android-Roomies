@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mobi.roomies.Activities.JoinRoomActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <EditText
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:hint="@string/hint_join_room"
+            android:id="@+id/join_room_edit_text"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="@string/join_room_button"
+            android:id="@+id/join_room_btn"/>
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
