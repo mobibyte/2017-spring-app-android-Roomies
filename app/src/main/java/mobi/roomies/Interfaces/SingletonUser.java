@@ -1,48 +1,48 @@
 package mobi.roomies.Interfaces;
 
+import mobi.roomies.models.User;
+
 /**
  * Created by HeyImRige on 4/14/2017.
  */
 
 public class SingletonUser {
     private static SingletonUser instance = null;
+    private static User theUser= null;
 
 
-    String id;
-    String name;
-    String email;
-    String avatarURL;
+
 
     public String getId() {
-        return id;
+        return theUser.getId();
     }
 
     public void setId(String id) {
-        this.id = id;
+        theUser.setId(id);
     }
 
     public String getName() {
-        return name;
+        return theUser.getName();
     }
 
     public void setName(String name) {
-        this.name = name;
+        theUser.setName(name);
     }
 
     public String getEmail() {
-        return email;
+        return theUser.getEmail();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        theUser.setEmail(email);
     }
 
     public String getAvatarURL() {
-        return avatarURL;
+        return theUser.getAvatarURL();
     }
 
     public void setAvatarURL(String avatarURL) {
-        this.avatarURL = avatarURL;
+        theUser.setAvatarURL(avatarURL);
     }
 
     protected SingletonUser() {
@@ -51,6 +51,7 @@ public class SingletonUser {
     public static SingletonUser getInstance() {
         if(instance == null) {
             instance = new SingletonUser();
+            theUser = new User();
         }
         return instance;
     }

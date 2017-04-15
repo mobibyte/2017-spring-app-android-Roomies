@@ -51,23 +51,23 @@ public class JoinRoomActivity extends AppCompatActivity {
 
 
         //Check if user is already in a group
-        /*
+
         userHaveRoomListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue()==null){
-                    //User already in a room
-                    String userGroupKey = dataSnapshot.getValue().toString();
+                    //User isn't in a room.
+
 
 
 
 
                 }
                 else{
-                    //Room does exist. Join it.
-
-
-
+                    //User is already in a room
+                    String userGroupKey = dataSnapshot.getValue().toString();
+                    singleGroup.setId(userGroupKey);
+                    //get the join key and Members, then launch the next intent.
 
 
                 }
@@ -78,9 +78,9 @@ public class JoinRoomActivity extends AppCompatActivity {
 
             }
         };
-        db.child("users").child(singleUser.getId()).addListenerForSingleValueEvent(userHaveRoomListener);
+        db.child("users").child(singleUser.getId()).child("group").addListenerForSingleValueEvent(userHaveRoomListener);
 
-        */
+
 
 
 
