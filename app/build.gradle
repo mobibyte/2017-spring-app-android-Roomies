@@ -8,6 +8,7 @@ android {
         applicationId "mobi.roomies"
         minSdkVersion 16
         targetSdkVersion 24
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -63,6 +64,8 @@ dependencies {
     }
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.android.support:multidex:1.0.1'
 }
 
 apply plugin: 'com.google.gms.google-services'

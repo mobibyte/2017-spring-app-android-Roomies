@@ -136,13 +136,13 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
                 .setBackOff(new ExponentialBackOff());
     }
 
-    /*
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_calendar, container, false);
-    }*/
+    }
 
 
     /**
