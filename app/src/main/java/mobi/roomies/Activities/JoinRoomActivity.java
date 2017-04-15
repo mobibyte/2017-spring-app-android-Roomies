@@ -14,12 +14,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import mobi.roomies.Interfaces.SingletonGroup;
 import mobi.roomies.Interfaces.SingletonUser;
 import mobi.roomies.R;
+import mobi.roomies.models.User;
 
 public class JoinRoomActivity extends AppCompatActivity {
 
@@ -30,10 +32,13 @@ public class JoinRoomActivity extends AppCompatActivity {
     private DatabaseReference db;
     private ValueEventListener joinCreateRoomListener;
     private ValueEventListener userHaveRoomListener;
+    private ValueEventListener getgroupInformation;
     private ValueEventListener roomMembersListener;
     private static final String TAG = "ROOMJOIN";
     private SingletonUser singleUser;
     private SingletonGroup singleGroup;
+    private ArrayList<User> userList;
+    private ArrayList<String> memberKeys;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +55,26 @@ public class JoinRoomActivity extends AppCompatActivity {
 
 
 
-        //Check if user is already in a group
 
+        getgroupInformation = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                singleGroup.setJoinKey(dataSnapshot.child("key").getValue().toString());
+                userList = singleGroup.getUserList();
+                for (DataSnapshot messageSnapshot: dataSnapshot.child("members").getChildren()){
+                    memberKeys.add(messageSnapshot.getKey());
+
+                };
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+
+        //Check if user is already in a group
         userHaveRoomListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -68,7 +91,8 @@ public class JoinRoomActivity extends AppCompatActivity {
                     String userGroupKey = dataSnapshot.getValue().toString();
                     singleGroup.setId(userGroupKey);
                     //get the join key and Members, then launch the next intent.
-
+                    DatabaseReference joiningThisGroup = db.child("groups").child(singleGroup.getId());
+                    joiningThisGroup.addListenerForSingleValueEvent(getgroupInformation);
 
                 }
             }
