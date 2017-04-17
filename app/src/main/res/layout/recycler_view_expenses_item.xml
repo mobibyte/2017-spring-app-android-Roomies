@@ -15,20 +15,21 @@
         android:elevation="3dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="331dp"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:orientation="horizontal">
 
-            <ImageView
+            <TextView
                 android:id="@+id/emoji"
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_gravity="center_vertical"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
                 android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher" />
+                android:text="a"
+                android:textSize="62dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -79,7 +80,7 @@
                         android:text="abc" />
 
                     <TextView
-                        android:id="@+id/debtor"
+                        android:id="@+id/owed_from"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight=".5"
