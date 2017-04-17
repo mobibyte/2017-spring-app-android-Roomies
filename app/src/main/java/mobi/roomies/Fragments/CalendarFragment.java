@@ -33,6 +33,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -69,7 +70,8 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
     GoogleAccountCredential mCredential;
     private TextView mOutputText;
     private Button mCallApiButton;
-    ProgressDialog mProgress;
+    //ProgressDialog mProgress;
+    private TextView mProgress;
 
     static final int REQUEST_ACCOUNT_PICKER = 1000;
     static final int REQUEST_AUTHORIZATION = 1001;
@@ -91,6 +93,8 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
         LinearLayout activityLayout = new LinearLayout(getActivity().getBaseContext());
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -133,7 +137,7 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
         // Initialize credentials and service object.
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getActivity().getApplicationContext(), Arrays.asList(SCOPES))
-                .setBackOff(new ExponentialBackOff());
+                .setBackOff(new ExponentialBackOff());*/
     }
 
 
@@ -141,7 +145,33 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+
+
+
+        mCallApiButton = (Button) view.findViewById(R.id.calendarAPIButton);
+        mCallApiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallApiButton.setEnabled(false);
+                mOutputText.setText("");
+                getResultsFromApi();
+                mCallApiButton.setEnabled(true);
+            }
+        });
+
+        mOutputText = (TextView) view.findViewById(R.id.outputTextView);
+        mOutputText.setText(
+                "Click the \'" + BUTTON_TEXT +"\' button to test the API.");
+
+        mProgress = (TextView) view.findViewById(R.id.progressTextView);
+        mProgress.setText("Calling Google Calendar API ...");
+
+        // Initialize credentials and service object.
+        mCredential = GoogleAccountCredential.usingOAuth2(
+                getActivity().getApplicationContext(), Arrays.asList(SCOPES))
+                .setBackOff(new ExponentialBackOff());
+        return view;
     }
 
 
@@ -357,7 +387,7 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
             final int connectionStatusCode) {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
         Dialog dialog = apiAvailability.getErrorDialog(
-                (Activity) getActivity().getBaseContext(),
+                getActivity(),
                 connectionStatusCode,
                 REQUEST_GOOGLE_PLAY_SERVICES);
         dialog.show();
@@ -435,12 +465,12 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
         @Override
         protected void onPreExecute() {
             mOutputText.setText("");
-            mProgress.show();
+            mProgress.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected void onPostExecute(List<String> output) {
-            mProgress.hide();
+            mProgress.setVisibility(View.INVISIBLE);
             if (output == null || output.size() == 0) {
                 mOutputText.setText("No results returned.");
             } else {
@@ -451,7 +481,7 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
 
         @Override
         protected void onCancelled() {
-            mProgress.hide();
+            mProgress.setVisibility(View.INVISIBLE);
             if (mLastError != null) {
                 if (mLastError instanceof GooglePlayServicesAvailabilityIOException) {
                     showGooglePlayServicesAvailabilityErrorDialog(
