@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+import mobi.roomies.Interfaces.SingletonUser;
 import mobi.roomies.R;
 
 import static android.R.attr.data;
@@ -44,6 +45,7 @@ public class FacebookLoginActivity extends FragmentActivity {
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private SingletonUser loggedInUser;
 
     private static final String TAG = "FacebookLogin";
     @Override
@@ -78,6 +80,19 @@ public class FacebookLoginActivity extends FragmentActivity {
                     data.put("name", user.getDisplayName().toString());
                     data.put("device", "Android");
                     db.child("users").child(user.getUid()).setValue(data);
+
+
+
+                    loggedInUser = SingletonUser.getInstance();
+                    loggedInUser.setAvatarURL(user.getPhotoUrl().toString());
+                    loggedInUser.setEmail(user.getEmail().toString());
+                    loggedInUser.setName(user.getDisplayName().toString());
+                    loggedInUser.setId(user.getUid());
+
+
+
+
+
 
                     //change to join room thingy
                     Intent intent = new Intent(FacebookLoginActivity.this,JoinRoomActivity.class);

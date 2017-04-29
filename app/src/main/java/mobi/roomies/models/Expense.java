@@ -9,9 +9,17 @@ public class Expense {
     //private String title, type, owedToUserName, owedFromUserName, amount, emoji;
 
     //temp to make it work
-    private String amount, title, username, type, emoji;
+    private String amount, title, username, type, emoji, owedFrom;
 
     public Expense() {
+    }
+
+    public String getOwedFrom() {
+        return owedFrom;
+    }
+
+    public void setOwedFrom(String owedFrom) {
+        this.owedFrom = owedFrom;
     }
 
     public String getAmount() {

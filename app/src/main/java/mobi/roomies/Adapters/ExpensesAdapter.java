@@ -31,19 +31,15 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
     }
 
     public class ExpenseViewHolder extends RecyclerView.ViewHolder {
-        public TextView title,type,owedto,owedfrom, amount;
-        public ImageView emoji;
+        public TextView title,type,owedto,owedFrom, amount, emoji;
 
         public ExpenseViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.title);
             type = (TextView) view.findViewById(R.id.author);
-            owedto = (TextView) view.findViewById(R.id.debtor);
-            emoji = (ImageView) view.findViewById(R.id.emoji);
+            owedFrom = (TextView) view.findViewById(R.id.owed_from);
+            emoji = (TextView) view.findViewById(R.id.emoji);
             amount = (TextView) view.findViewById(R.id.amount);
-
-
-
         }
     }
 
@@ -59,10 +55,12 @@ public class ExpensesAdapter extends RecyclerView.Adapter<ExpensesAdapter.Expens
        // Log.d("viewholder db",currentExpense.getTitle());
         holder.title.setText(currentExpense.getTitle());
         holder.type.setText(currentExpense.getType());
-       // holder.owedto.setText(currentExpense.getOwedToUserName());
+       //holder.owedto.setText(currentExpense.getOwedToUserName());
         holder.amount.setText("$"+currentExpense.getAmount());
+        holder.emoji.setText(currentExpense.getEmoji());
 
-
+        //TODO need to change this, but its tied to firebase. look @ expense fragment ondatachangeds
+        holder.owedFrom.setText(currentExpense.getUsername());
     }
 
     @Override
