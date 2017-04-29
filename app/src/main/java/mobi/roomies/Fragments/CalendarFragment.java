@@ -63,11 +63,7 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    GoogleAccountCredential mCredential;
+    private GoogleAccountCredential mCredential;
     private TextView mOutputText;
     private Button mCallApiButton;
     //ProgressDialog mProgress;
@@ -82,10 +78,6 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
     private static final String PREF_ACCOUNT_NAME = "accountName";
     private static final String[] SCOPES = { CalendarScopes.CALENDAR_READONLY };
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public CalendarFragment() {
         // Required empty public constructor
     }
@@ -94,50 +86,6 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*
-        LinearLayout activityLayout = new LinearLayout(getActivity().getBaseContext());
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
-        activityLayout.setLayoutParams(lp);
-        activityLayout.setOrientation(LinearLayout.VERTICAL);
-        activityLayout.setPadding(16, 16, 16, 16);
-
-        ViewGroup.LayoutParams tlp = new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        mCallApiButton = new Button(getActivity().getBaseContext());
-        mCallApiButton.setText(BUTTON_TEXT);
-        mCallApiButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCallApiButton.setEnabled(false);
-                mOutputText.setText("");
-                getResultsFromApi();
-                mCallApiButton.setEnabled(true);
-            }
-        });
-        activityLayout.addView(mCallApiButton);
-
-        mOutputText = new TextView(getActivity().getBaseContext());
-        mOutputText.setLayoutParams(tlp);
-        mOutputText.setPadding(16, 16, 16, 16);
-        mOutputText.setVerticalScrollBarEnabled(true);
-        mOutputText.setMovementMethod(new ScrollingMovementMethod());
-        mOutputText.setText(
-                "Click the \'" + BUTTON_TEXT +"\' button to test the API.");
-        activityLayout.addView(mOutputText);
-
-        mProgress = new ProgressDialog(getActivity().getBaseContext());
-        mProgress.setMessage("Calling Google Calendar API ...");
-
-        getActivity().setContentView(activityLayout);
-
-        // Initialize credentials and service object.
-        mCredential = GoogleAccountCredential.usingOAuth2(
-                getActivity().getApplicationContext(), Arrays.asList(SCOPES))
-                .setBackOff(new ExponentialBackOff());*/
     }
 
 
@@ -173,16 +121,6 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
                 .setBackOff(new ExponentialBackOff());
         return view;
     }
-
-
-    /**
-     * Attempt to call the API, after verifying that all the preconditions are
-     * satisfied. The preconditions are: Google Play Services installed, an
-     * account was selected and the device currently has online access. If any
-     * of the preconditions are not satisfied, the app will prompt the user as
-     * appropriate.
-     */
-
 
     private void getResultsFromApi() {
         if (! isGooglePlayServicesAvailable()) {
@@ -404,6 +342,7 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
         private Exception mLastError = null;
 
         MakeRequestTask(GoogleAccountCredential credential) {
+            Log.d("Debug - Kev","inside of constructor for makereqtask");
             HttpTransport transport = AndroidHttp.newCompatibleTransport();
             JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
             mService = new com.google.api.services.calendar.Calendar.Builder(
@@ -420,11 +359,13 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
 
         @Override
         protected List<String> doInBackground(Void... params) {
+            Log.d("Debug - Kev","Inside of execute()");
             try {
                 return getDataFromApi();
             } catch (Exception e) {
                 mLastError = e;
                 cancel(true);
+                Log.d("Debug - Kev",e.getLocalizedMessage());
                 return null;
             }
         }
@@ -440,13 +381,22 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
             // List the next 10 events from the primary calendar.
             DateTime now = new DateTime(System.currentTimeMillis());
             List<String> eventStrings = new ArrayList<String>();
-            Events events = mService.events().list("primary")
-                    .setMaxResults(10)
-                    .setTimeMin(now)
-                    .setOrderBy("startTime")
-                    .setSingleEvents(true)
-                    .execute();
-            List<Event> items = events.getItems();
+            Log.d("Debug - Kev","Trying to get data from api");
+            List<Event> items = null;
+
+            try {
+                Events events = mService.events().list("primary")
+                        .setMaxResults(10)
+                        .setTimeMin(now)
+                        .setOrderBy("startTime")
+                        .setSingleEvents(true)
+                        .execute();
+                 items = events.getItems();
+                Log.d("Debug - Kev", "Should've got data from api");
+            }catch(Exception e){
+                Log.d("Debug - Kev ","Exception caught" + e.getLocalizedMessage());
+            }
+
 
             for (Event event : items) {
                 DateTime start = event.getStart().getDateTime();
@@ -516,62 +466,7 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
     public static CalendarFragment newInstance(String page, String title) {
         CalendarFragment calendarFragment = new CalendarFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, page);
-        args.putString(ARG_PARAM2, title);
         calendarFragment.setArguments(args);
         return calendarFragment;
     }
-
-
-    /*
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public CalendarFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    // new instance constructor required to create a new fragment with arguments
-    // change eventually
-    public static CalendarFragment newInstance(String page, String title) {
-        CalendarFragment calendarFragment = new CalendarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, page);
-        args.putString(ARG_PARAM2, title);
-        calendarFragment.setArguments(args);
-        return calendarFragment;
-    }*/
 }
