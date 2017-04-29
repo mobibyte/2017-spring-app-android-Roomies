@@ -1,5 +1,9 @@
 package mobi.roomies.Interfaces;
 
+import java.util.ArrayList;
+
+import mobi.roomies.models.User;
+
 /**
  * Created by HeyImRige on 4/14/2017.
  */
@@ -10,16 +14,18 @@ public class SingletonGroup {
 
     String id;
     String joinKey;
-    String members;
+    private ArrayList<User> members;
 
 
 
     protected SingletonGroup(){
-
+        members = new ArrayList<User>();
     }
     public static SingletonGroup getInstance(){
         if (instance == null){
             instance = new SingletonGroup();
+
+
         }
         return instance;
     }
@@ -40,11 +46,9 @@ public class SingletonGroup {
         this.joinKey = joinKey;
     }
 
-    public String getMembers() {
+
+    public ArrayList<User> getUserList(){
         return members;
     }
 
-    public void setMembers(String members) {
-        this.members = members;
-    }
 }
