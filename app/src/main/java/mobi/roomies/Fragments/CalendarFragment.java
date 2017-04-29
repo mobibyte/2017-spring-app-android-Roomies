@@ -95,7 +95,7 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-
+        Log.d("hello","test");
 
         mCallApiButton = (Button) view.findViewById(R.id.calendarAPIButton);
         mCallApiButton.setOnClickListener(new View.OnClickListener() {
@@ -387,14 +387,12 @@ public class CalendarFragment extends Fragment implements EasyPermissions.Permis
             try {
                 Events events = mService.events().list("primary")
                         .setMaxResults(10)
-                        .setTimeMin(now)
-                        .setOrderBy("startTime")
-                        .setSingleEvents(true)
                         .execute();
-                 items = events.getItems();
+
+                items = events.getItems();
                 Log.d("Debug - Kev", "Should've got data from api");
             }catch(Exception e){
-                Log.d("Debug - Kev ","Exception caught" + e.getLocalizedMessage());
+                Log.d("Debug - Kev ","Exception caught " + e.getMessage());
             }
 
 
